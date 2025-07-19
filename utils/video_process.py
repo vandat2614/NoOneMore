@@ -76,7 +76,7 @@ def draw_triangle(frame, bbox, color):
         [x, y], #bottom
         [x-10, y-20], # left top
         [x+10, y-20] # right top
-    ])
+    ], dtype=np.int32).reshape((-1, 1, 2))
 
     # 0 is contours index (>=0 vẽ contour tại index đó), = -1 thì vẽ all trong lisst (hiện tại chỉ có 1 )
     cv2.drawContours(frame, [triangle_points], 0, color, cv2.FILLED)

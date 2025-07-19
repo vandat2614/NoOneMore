@@ -47,7 +47,7 @@ class Detector:
             results[frame_num] = {
                 "players" : {},
                 "goalkeepers" : {},
-                "refeeres" : {},
+                "referees" : {},
                 "ball" : {}
             }
 

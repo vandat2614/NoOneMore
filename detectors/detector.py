@@ -21,7 +21,7 @@ class Detector:
         return sv.Detections.from_ultralytics(ultralytics_results=frame_result)
     
     def assign_track_id(self, frame_in_sv_format):
-        self.tracker.update_with_detections(frame_in_sv_format)
+        return self.tracker.update_with_detections(frame_in_sv_format)
         
     def process(self, frames, load=False, save_path=None):
 

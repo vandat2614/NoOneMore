@@ -16,13 +16,17 @@ def main():
     print("1. Start load video")
     frames = read_video(args.input_path)
     
-    print("2. Process Video")
+    print("2. Detect Object")
     
     detector = Detector(weight_path=args.weight)
-    print("2.1 Load successful")
+    print("2.1 Load weight successful")
     
-    results = detector.process(frames, load=True, save_path="processed_info.pk1")
+    results = detector.process(frames, load=True, save_path=args.save_path)
 
+    print("2.2 Detect done")
+
+
+    print("4. Save result")
     save_video(frames, args.output_path)
 
 if __name__ == '__main__':

@@ -52,9 +52,9 @@ class Detector:
             }
 
             for obj in objects_with_track:
-                bbox = obj.xyxy
-                cls_id = obj.class_id
-                track_id = obj.tracker_id
+                bbox = obj[0] # xyxy
+                cls_id = obj[3]
+                track_id = obj[4]
 
                 dict_key = cls_id_to_name[cls_id]
                 if dict_key != cls_name_to_id["ball"]:

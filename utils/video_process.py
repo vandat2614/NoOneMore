@@ -1,7 +1,7 @@
 import cv2
 import os
 import numpy as np
-from bbox_utils import get_center_of_bbox, get_bbox_width
+from .bbox_utils import get_center_of_bbox, get_bbox_width
 
 def read_video(video_path):
     cap = cv2.VideoCapture(filename=video_path)

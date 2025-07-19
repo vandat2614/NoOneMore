@@ -1,5 +1,5 @@
 import argparse
-from utils import read_video, save_video
+from utils import read_video, save_video, draw
 from detectors import Detector
 
 def parse_args():
@@ -25,9 +25,11 @@ def main():
 
     print("2.2 Detect done")
 
+    print("3. Draw")
+    output_frames = draw(frames, results)
 
     print("4. Save result")
-    save_video(frames, args.output_path)
+    save_video(output_frames, args.output_path)
 
 if __name__ == '__main__':
     main()

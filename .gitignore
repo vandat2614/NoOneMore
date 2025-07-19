@@ -1,1 +1,8 @@
 venv/
+
+# ignore video
+*.avi
+
+
+# igore weights
+*.pt

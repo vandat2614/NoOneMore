@@ -57,7 +57,7 @@ class Detector:
                 track_id = obj[4]
 
                 dict_key = cls_id_to_name[cls_id]
-                if dict_key != cls_name_to_id["ball"]:
+                if cls_id != cls_name_to_id["ball"]:
                     dict_key += "s"
                 else: 
                     track_id = 1 # keep ball id alway constant, model maybe lost ball in some frame

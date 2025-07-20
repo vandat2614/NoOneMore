@@ -1,6 +1,6 @@
 import argparse
 from utils import read_video, save_video, draw
-from detectors import Detector
+from detectors import Detector, Assigner
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Read a video and save it after processing.")
@@ -25,10 +25,25 @@ def main():
 
     print("2.2 Detect done")
 
-    print("3. Draw")
+
+
+    print("3. Assign Team")
+    assigner = Assigner()
+    assigner.fit(frames[0], results[0]["players"])
+    
+    for frame_num, frame in enumerate(frames):
+        objects = results[frame_num]["players"]
+
+        for player_id, info in objects.items():
+            team = assigner.predict(frame, info["bbox"], player_id)
+
+            results[frame_num]["players"][player_id]["team"] = team
+            results[frame_num]["players"][player_id]["team_color"] = assigner.team1_color if team == 1 else assigner.team2_color
+
+    print("4. Draw")
     output_frames = draw(frames, results)
 
-    print("4. Save result")
+    print("5. Save result")
     save_video(output_frames, args.output_path)
 
 if __name__ == '__main__':

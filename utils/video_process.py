@@ -96,7 +96,7 @@ def draw(frames, tracks):
         referee_dict = tracks[frame_num]["referees"]
 
         for track_id, info in player_dict.items():
-            draw_frame = draw_ellipse(draw_frame, info["bbox"], track_id, color=(0,0,255))
+            draw_frame = draw_ellipse(draw_frame, info["bbox"], track_id, color=info["team_color"])
         
         for track_id, info in referee_dict.items():
             draw_frame = draw_ellipse(draw_frame, info["bbox"], track_id, color=(0,255,255))

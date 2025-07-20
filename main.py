@@ -50,4 +50,5 @@ def main():
     save_video(output_frames, args.output_path)
 
 if __name__ == '__main__':
-    main()
+    # main()
+    print(type({}))

@@ -75,7 +75,7 @@ class Detector:
         
         ball_positions = []
         for frame_num, frame_result in results.items():
-            pos = frame_result["ball"].get(1, {}).get({"bbox"}, [])
+            pos = frame_result["ball"].get(1, {}).get("bbox", [])
             ball_positions.append(pos)
 
         df_ball_pos = pd.DataFrame(data=ball_positions, columns=['x1', 'y1', 'x2', 'y2'])

@@ -2,6 +2,7 @@ from ultralytics import YOLO
 import supervision as sv
 import os
 import pickle
+import pandas as pd
 
 class Detector:
 
@@ -69,4 +70,26 @@ class Detector:
                 pickle.dump(obj=results, file=f)
 
         return results
+    
+    def interpolation_ball(self, results):
+        
+        ball_positions = []
+        for frame_num, frame_result in results.items():
+            pos = frame_result["ball"].get(1, {}).get({"bbox"}, [])
+            ball_positions.append(pos)
 
+        df_ball_pos = pd.DataFrame(data=ball_positions, columns=['x1', 'y1', 'x2', 'y2'])
+
+        # Interpolate missing value
+        df_ball_pos = df_ball_pos.interpolate() # default is ?
+        
+
+        # If first entry is missing interpolate not process it
+        df_ball_pos = df_ball_pos.bfill()
+
+        ball_positions = [bb for bb in df_ball_pos.to_numpy().tolist()]
+
+        for frame_num, frame_result in results.items():
+            frame_result["ball"][1]["bbox"] = ball_positions[frame_num]
+
+        

@@ -25,6 +25,9 @@ def main():
 
     print("2.2 Detect done")
 
+    print("2.3 Interpolate ball")
+    detector.interpolation_ball(results)
+
 
 
     print("3. Assign Team")

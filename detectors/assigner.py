@@ -11,7 +11,7 @@ class Assigner:
 
     def get_color(self, frame, bbox):
         
-        img = frame[int(bbox[1]) : int(bbox[3]), int(bbox[0]), int(bbox[2])]
+        img = frame[int(bbox[1]) : int(bbox[3]), int(bbox[0]) : int(bbox[2])]
         img = img[ : int(img.shape[0] / 2), :]
 
         features = img.reshape(-1, 3)

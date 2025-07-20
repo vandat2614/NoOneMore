@@ -1,6 +1,10 @@
 from sklearn.cluster import KMeans
 import numpy as np
 
+import sys
+sys.path.append('../')
+from utils import get_center_of_bbox, get_distance
+
 class Assigner:
 
     def __init__(self):
@@ -56,4 +60,33 @@ class Assigner:
         self.team_dict[player_id] = team_id + 1
 
         return team_id + 1
+
+    def assign_ball_to_player(self, frame_result, ball_bbox):
+
+        max_distance = 70
+        ball_pos = get_center_of_bbox(ball_bbox)
+
+        min_distance = None
+        assign_id = None
+
+        for player_id, info in frame_result.items():
+            player_bbox = info["bbox"]
+
+            left_distance = get_distance(
+                (player_bbox[0], player_bbox[3]),
+                ball_pos
+            )
+            right_distance = get_distance(
+                (player_bbox[2], player_bbox[3]),
+                ball_pos
+            )
+
+            distance = min(left_distance, right_distance)
+
+            if distance < max_distance:
+                if min_distance is None or distance < min_distance:
+                    distance = min_distance
+                    assign_id = player_id
+
+        return player_id
 

@@ -97,6 +97,9 @@ def draw(frames, tracks):
 
         for track_id, info in player_dict.items():
             draw_frame = draw_ellipse(draw_frame, info["bbox"], track_id, color=info["team_color"])
+
+            if info.get("has_ball", False):
+                draw_frame = draw_triangle(draw_frame, info["bbox"], (255, 0, 255))
         
         for track_id, info in referee_dict.items():
             draw_frame = draw_ellipse(draw_frame, info["bbox"], track_id, color=(0,255,255))

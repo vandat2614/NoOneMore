@@ -43,6 +43,12 @@ def main():
             results[frame_num]["players"][player_id]["team"] = team
             results[frame_num]["players"][player_id]["team_color"] = assigner.team1_color if team == 1 else assigner.team2_color
 
+        player_keep_ball_id = assigner.assign_ball_to_player(objects, results[frame_num]["ball"][1]["bbox"])
+
+        if player_keep_ball_id is not None:
+            results[frame_num]["players"][player_keep_ball_id]["has_ball"] = True
+
+
     print("4. Draw")
     output_frames = draw(frames, results)
 

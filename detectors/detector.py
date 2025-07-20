@@ -90,6 +90,6 @@ class Detector:
         ball_positions = [bb for bb in df_ball_pos.to_numpy().tolist()]
 
         for frame_num, frame_result in results.items():
-            frame_result["ball"][1]["bbox"] = ball_positions[frame_num]
+            frame_result["ball"] = {1 : {"bbox" : ball_positions[frame_num]}}
 
         

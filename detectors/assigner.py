@@ -20,7 +20,7 @@ class Assigner:
 
         # get cluster center
         labels = kmeans.labels_
-        cluster_img = labels.reshape(frame.shape[0], frame.shape[1])
+        cluster_img = labels.reshape(img.shape[0], img.shape[1])
 
         corner_labels = [cluster_img[0, 0], cluster_img[0, -1], cluster_img[-1, 0], cluster_img[-1, -1]]
         bg_label = max(set(corner_labels), key=corner_labels.count)

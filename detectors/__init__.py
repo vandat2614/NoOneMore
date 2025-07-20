@@ -1,1 +1,2 @@
-from .detector import Detector, Assigner
+from .detector import Detector
+from .assigner import Assigner

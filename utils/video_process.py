@@ -105,7 +105,7 @@ def draw(frames, tracks):
             draw_frame = draw_ellipse(draw_frame, info["bbox"], track_id, color=(0, 255, 0))
 
         for track_id, info in ball_dict.items():
-            frame = draw_triangle(frame, info["bbox"], (0, 255, 0))
+            draw_frame = draw_triangle(draw_frame, info["bbox"], (255, 0, 0))
 
         output_frames.append(draw_frame)
 
